@@ -48,7 +48,7 @@ class AddPeopleFragment : Fragment() {
             textInputFacebook.editText?.text.toString(),
             textInputTwitter.editText?.text.toString()
         )
-        (activity?.application as JetpaclExampleApp).getPeopleRepository().insertPeople(people)
+       // (activity?.application as JetpaclExampleApp).getPeopleRepository().insertPeople(people)
 
         Navigation.findNavController(view!!).navigateUp()
     }

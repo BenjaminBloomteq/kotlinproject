@@ -5,15 +5,12 @@ import androidx.lifecycle.LiveData
 import com.example.jetpackexampleapp.data.db.PeopleDatabase
 import com.example.jetpackexampleapp.data.model.People
 import com.raywenderlich.android.imet.data.db.PeopleDao
+import javax.inject.Singleton
 
-class PeopleRepository(application: Application) {
-
+@Singleton
+class PeopleRepository (
     private val peopleDao: PeopleDao
-
-    init {
-        val peopleDatabase = PeopleDatabase.getInstance(application)
-        peopleDao = peopleDatabase.peopleDao()
-    }
+){
 
     fun getAllPeople(): LiveData<List<People>> {
         return peopleDao.getAll()

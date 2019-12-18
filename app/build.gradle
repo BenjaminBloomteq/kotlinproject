@@ -42,6 +42,15 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
 
 // 3: Navigation Components
+
+    // dagger 2
+    implementation 'com.google.dagger:dagger-android:2.21'
+    implementation 'com.google.dagger:dagger-android-support:2.21'
+    kapt 'com.google.dagger:dagger-android-processor:2.21'
+
+    /* Dagger2 - default dependency */
+    kapt 'com.google.dagger:dagger-compiler:2.21'
+
     def navigationVersion = "1.0.0"
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"

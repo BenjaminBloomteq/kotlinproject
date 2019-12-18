@@ -41,6 +41,6 @@ class JetpaclExampleApp : Application() {
   /**
    * Provides centralised Repository throughout the app
    */
-  fun getPeopleRepository() = PeopleRepository(this)
+  //fun getPeopleRepository() = PeopleRepository(this)
 
 }
