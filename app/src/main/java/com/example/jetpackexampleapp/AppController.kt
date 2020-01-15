@@ -9,6 +9,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
+
 /*
  * we use our AppComponent (now prefixed with Dagger)
  * to inject our Application class.

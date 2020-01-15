@@ -12,10 +12,7 @@ class PeoplesListViewModel @Inject
 constructor(
     peopleDao: PeopleDao) : ViewModel() {
 
-    private val peopleRepository =
-        PeopleRepository(
-            peopleDao
-        )
+    private val peopleRepository = PeopleRepository(peopleDao)
     private val peopleList = MediatorLiveData<List<People>>()
 
 
@@ -30,9 +27,9 @@ constructor(
 
     // 2
     fun getAllPeople() {
-        peopleList.addSource(peopleRepository.getAllPeople()) { peoples ->
-            peopleList.postValue(peoples)
-        }
+//        peopleList.addSource(peopleRepository.getAllPeople()) { peoples ->
+//            peopleList.postValue(peoples)
+//        }
     }
 
     fun searchPeople(name: String) {

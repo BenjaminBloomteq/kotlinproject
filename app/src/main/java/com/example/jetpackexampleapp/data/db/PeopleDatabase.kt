@@ -7,14 +7,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.jetpackexampleapp.data.model.People
+import com.example.jetpackexampleapp.data.model.Post
 import com.example.jetpackexampleapp.data.net.PeopleInfoProvider
 import com.raywenderlich.android.imet.data.db.PeopleDao
 
-@Database(entities = [People::class], version = 1)
+@Database(entities = [People::class, Post::class], version = 1)
 abstract class PeopleDatabase : RoomDatabase() {
 
     abstract fun peopleDao(): PeopleDao
-
+    abstract fun postDao(): PostDao
     // 2
     companion object {
         private val lock = Any()
@@ -23,29 +24,22 @@ abstract class PeopleDatabase : RoomDatabase() {
 
         // 3
         fun getInstance(application: Application): PeopleDatabase {
-            synchronized(PeopleDatabase.lock) {
-                if (PeopleDatabase.INSTANCE == null) {
-                    PeopleDatabase.INSTANCE =
-                        Room.databaseBuilder(application, PeopleDatabase::class.java, PeopleDatabase.DB_NAME)
+            synchronized(lock) {
+                if (INSTANCE == null) {
+                    INSTANCE =
+                        Room.databaseBuilder(application, PeopleDatabase::class.java, DB_NAME)
                             .allowMainThreadQueries()
-                            .addCallback(object : RoomDatabase.Callback() {
-                                override fun onCreate(db: SupportSQLiteDatabase) {
-                                    super.onCreate(db)
-                                    PeopleDatabase.INSTANCE?.let {
-                                        PeopleDatabase.prePopulate(it, PeopleInfoProvider.peopleList)
-                                    }
-                                }
-                            })
                             .build()
                 }
-                return PeopleDatabase.INSTANCE!!
+                return INSTANCE!!
             }
         }
 
-        fun prePopulate(database: PeopleDatabase, peopleList: List<People>) {
-            for (people in peopleList) {
-                AsyncTask.execute { database.peopleDao().insert(people) }
-            }
-        }
+
+//        fun prePopulate(database: PeopleDatabase, peopleList: List<People>) {
+//            for (people in peopleList) {
+//                AsyncTask.execute { database.peopleDao().insert(people) }
+//            }
+//        }
     }
 }

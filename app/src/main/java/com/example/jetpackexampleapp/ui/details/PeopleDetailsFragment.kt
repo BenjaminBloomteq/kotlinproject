@@ -30,22 +30,22 @@ class PeopleDetailsFragment : Fragment() {
         // Find people with provided id
         val peopleId = arguments?.getInt(getString(R.string.people_id))
         peopleId?.let {
-            viewModel.getPeopleDetails(peopleId).observe(this, Observer { peopleDetails ->
-                populatePeopleDetails(peopleDetails)
-           })
+//            viewModel.getPeopleDetails(peopleId).observe(this, Observer { peopleDetails ->
+//                populatePeopleDetails(peopleDetails)
+//            })
         }
     }
 
     /**
      * Binds people info into views
      */
-    private fun populatePeopleDetails(people: People?) {
+    /*private fun populatePeopleDetails(people: People?) {
         textViewName.text = people?.name
         textViewMet.text = people?.metAt
         buttonContact.text = people?.contact
         textViewEmail.text = people?.email
         textViewFacebook.text = people?.facebook
         textViewTwitter.text = people?.twitter
-    }
+    }*/
 
 }

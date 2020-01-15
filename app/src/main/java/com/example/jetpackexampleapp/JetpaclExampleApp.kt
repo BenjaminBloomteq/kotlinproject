@@ -34,13 +34,7 @@
 package com.example.jetpackexampleapp
 
 import android.app.Application
-import com.example.jetpackexampleapp.data.PeopleRepository
 
 class JetpaclExampleApp : Application() {
-
-  /**
-   * Provides centralised Repository throughout the app
-   */
-  //fun getPeopleRepository() = PeopleRepository(this)
 
 }

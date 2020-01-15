@@ -3,7 +3,6 @@ package com.example.jetpackexampleapp.ui.list
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.jetpackexampleapp.R
 import com.example.jetpackexampleapp.data.model.People
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_peoples_list.*
 import javax.inject.Inject

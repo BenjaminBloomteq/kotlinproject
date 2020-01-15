@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        android:layout_height="match_parent">
 
-    <fragment
-            android:id="@+id/navigationHostFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+    <ImageView
+            android:id="@+id/antColonyLogo"
+            android:layout_width="124dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="75dp"
+            android:contentDescription="@string/app_name"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@id/fragmentFrameLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ant_logo_black_modal" />
+
+    <FrameLayout
+            android:id="@+id/fragmentFrameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_graph"/>
+            android:layout_height="486dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/antColonyLogo"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <ImageView
+            android:id="@+id/backArrowImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@mipmap/arrow"
+            app:layout_constraintRight_toLeftOf="@id/antColonyLogo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="70dp"
+            android:visibility="invisible"
+            android:clickable="true"
+            android:focusable="true"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

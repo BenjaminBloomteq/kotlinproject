@@ -1,4 +1,6 @@
 package com.example.jetpackexampleapp.data.model
 
-class User {
+data class User(
+    var name: String
+) {
 }

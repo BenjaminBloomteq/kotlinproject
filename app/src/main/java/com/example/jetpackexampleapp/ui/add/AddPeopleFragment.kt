@@ -29,7 +29,7 @@ class AddPeopleFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_add -> {
-                savePeopleInfo()
+                //savePeopleInfo()
                 return true
             }
         }
@@ -39,7 +39,7 @@ class AddPeopleFragment : Fragment() {
     /**
      * Saves people info from user input and returns to PeopleListActivity
      */
-    private fun savePeopleInfo() {
+    /*private fun savePeopleInfo() {
         val people = People(
             textInputName.editText?.text.toString(),
             textInputMetAt.editText?.text.toString(),
@@ -51,6 +51,6 @@ class AddPeopleFragment : Fragment() {
        // (activity?.application as JetpaclExampleApp).getPeopleRepository().insertPeople(people)
 
         Navigation.findNavController(view!!).navigateUp()
-    }
+    }*/
 
 }

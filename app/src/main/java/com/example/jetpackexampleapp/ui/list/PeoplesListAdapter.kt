@@ -36,13 +36,11 @@ class PeoplesListAdapter(
 
         fun bind(people: People, listener: OnItemClickListener) = with(itemView) {
             textViewName.text = people.name
-            textViewMet.text = people.metAt
-            buttonContact.text = people.contact
             buttonContact.setOnClickListener {
                 // Dial contact number
-                val dialIntent = Intent(Intent.ACTION_DIAL)
-                dialIntent.data = Uri.parse("tel:${people.contact}")
-                itemView.context.startActivity(dialIntent)
+                //val dialIntent = Intent(Intent.ACTION_DIAL)
+                //dialIntent.data = Uri.parse("tel:${people.contact}")
+                //itemView.context.startActivity(dialIntent)
             }
 
             // RecyclerView on item click
