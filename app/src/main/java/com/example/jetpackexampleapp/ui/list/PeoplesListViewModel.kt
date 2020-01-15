@@ -1,13 +1,9 @@
 package com.example.jetpackexampleapp.ui.list
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import com.example.jetpackexampleapp.JetpaclExampleApp
-import com.example.jetpackexampleapp.data.PeopleRepository
-import com.example.jetpackexampleapp.data.db.PeopleDatabase
+import com.example.jetpackexampleapp.data.repositories.PeopleRepository
 import com.example.jetpackexampleapp.data.model.People
 import com.raywenderlich.android.imet.data.db.PeopleDao
 import javax.inject.Inject
@@ -16,7 +12,10 @@ class PeoplesListViewModel @Inject
 constructor(
     peopleDao: PeopleDao) : ViewModel() {
 
-    private val peopleRepository = PeopleRepository(peopleDao)
+    private val peopleRepository =
+        PeopleRepository(
+            peopleDao
+        )
     private val peopleList = MediatorLiveData<List<People>>()
 
 

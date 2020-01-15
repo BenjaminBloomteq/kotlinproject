@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+            android:id="@+id/oneThingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/one_thing"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"
+            android:textColor="#000000"/>
+
+    <EditText
+            android:id="@+id/newPostEditText"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/oneThingTextView"
+            android:background="@drawable/post_edit_text_input"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginTop="25dp"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:layout_marginRight="60dp"
+            android:hint="@string/whats_on_your_mind"
+            android:textAlignment="center"
+            android:gravity="center" />
+
+    <ImageView
+            android:id="@+id/userAvatarImageView"
+            android:layout_width="44dp"
+            android:layout_height="45dp"
+            app:srcCompat="@mipmap/ant_logo_black_modal"
+            app:layout_constraintStart_toStartOf="@id/newPostEditText"
+            app:layout_constraintTop_toTopOf="@id/newPostEditText"
+            app:layout_constraintBottom_toBottomOf="@id/newPostEditText"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"/>
+
+    <Button
+            android:id="@+id/postButton"
+            android:layout_width="57dp"
+            android:layout_height="52dp"
+            android:backgroundTint="#57CA3A"
+            android:text="@string/u2713"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/newPostEditText"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="65dp"/>
+
+<!--            <FrameLayout-->
+<!--                    android:id="@+id/postsFrameLayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/newPostEditText"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    android:layout_marginTop="40dp">-->
+
+<!--            </FrameLayout>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/postsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/newPostEditText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp"
+            />
+</androidx.constraintlayout.widget.ConstraintLayout>

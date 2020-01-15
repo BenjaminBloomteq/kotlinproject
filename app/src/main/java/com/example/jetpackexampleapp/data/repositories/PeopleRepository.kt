@@ -9,9 +9,14 @@ import javax.inject.Singleton
 
 @Singleton
 class PeopleRepository (
-    private val peopleDao: PeopleDao
+    application: Application
 ){
+    private val peopleDao: PeopleDao
 
+    init {
+        val peopleDatabase = PeopleDatabase.getInstance(application)
+        peopleDao = peopleDatabase.peopleDao()
+    }
     fun getAllPeople(): LiveData<List<People>> {
         return peopleDao.getAll()
     }

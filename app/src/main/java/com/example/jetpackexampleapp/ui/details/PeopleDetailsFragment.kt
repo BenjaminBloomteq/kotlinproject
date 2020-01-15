@@ -30,9 +30,9 @@ class PeopleDetailsFragment : Fragment() {
         // Find people with provided id
         val peopleId = arguments?.getInt(getString(R.string.people_id))
         peopleId?.let {
-//            viewModel.getPeopleDetails(peopleId).observe(this, Observer { peopleDetails ->
-//                populatePeopleDetails(peopleDetails)
-//            })
+            viewModel.getPeopleDetails(peopleId).observe(this, Observer { peopleDetails ->
+                populatePeopleDetails(peopleDetails)
+           })
         }
     }
 

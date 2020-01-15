@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "939544050406",
+    "firebase_url": "https://jetpackatchitecture.firebaseio.com",
+    "project_id": "jetpackatchitecture",
+    "storage_bucket": "jetpackatchitecture.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939544050406:android:a9222ec263626e59945927",
+        "android_client_info": {
+          "package_name": "com.example.jetpackexampleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939544050406-8053famhfv3usm4bl0lihq1tegtfjadm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jetpackexampleapp",
+            "certificate_hash": "c75da30b18e5693de7bdc77fa886b355f83021dc"
+          }
+        },
+        {
+          "client_id": "939544050406-107svrcmrq152t4psecm7jktrdnqiuc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcL3_HWkQjfRh_4AY3cBMQYep6aEJ4UKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939544050406-107svrcmrq152t4psecm7jktrdnqiuc2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
