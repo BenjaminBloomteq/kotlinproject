@@ -25,11 +25,18 @@ class PostRecyclerViewAdapter constructor(
         var date: TextView = view.findViewById(R.id.timePostedTextView) as TextView
         var likes: TextView = view.findViewById(R.id.numberOfLikes) as TextView
         var liked: ImageView = view.findViewById(R.id.notLikedImageView) as ImageView
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // create view holder to hold reference
-        return ViewHolder( LayoutInflater.from(parent.context).inflate(R.layout.fragment_post, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.fragment_post,
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -37,10 +44,11 @@ class PostRecyclerViewAdapter constructor(
         val dateFormatter = SimpleDateFormat("dd/MM HH:mm")
         val data = livedata.value!! // idk
         holder.content.text = data[position].content
-        val date =  Date(data[position].date)
+        val date = Date(data[position].date)
         val time: String? = dateFormatter.format(date)
         holder.date.text = time
         holder.likes.text = String.format("%d", 100)
+        holder.liked.setImageResource(R.mipmap.unliked)
         holder.liked.tag = "unliked"
 
         holder.liked.setOnClickListener {

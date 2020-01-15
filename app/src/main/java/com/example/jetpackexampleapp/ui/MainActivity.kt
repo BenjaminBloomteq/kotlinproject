@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         return dispatchingAndroidInjector
     }
 
-    lateinit var mFragment: Fragment
+    private lateinit var mFragment: Fragment
 
     private fun toSignUp() { // sets fragment to register fragment
         mFragment = RegisterFragment()

@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.jetpackexampleapp.ui.feed.FeedViewModel
 import com.example.jetpackexampleapp.ui.feed.PostViewModel
-import com.example.jetpackexampleapp.ui.list.PeoplesListViewModel
 import com.example.jetpackexampleapp.ui.register.RegisterViewModel
 import com.example.jetpackexampleapp.ui.signin.SignInViewModel
 import dagger.Binds
@@ -16,12 +15,6 @@ internal abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(PeoplesListViewModel::class)
-    protected abstract fun peoplesListViewModel(moviesListViewModel: PeoplesListViewModel): ViewModel
 
     @Binds
     @IntoMap
