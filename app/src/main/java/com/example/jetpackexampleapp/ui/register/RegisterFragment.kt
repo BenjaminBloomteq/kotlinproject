@@ -36,7 +36,6 @@ class RegisterFragment : Fragment() {
     ): View? {
         AndroidSupportInjection.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RegisterViewModel::class.java)
-        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
         return inflater.inflate(R.layout.fragment_sign_up, container, false)
     }
 
@@ -48,43 +47,6 @@ class RegisterFragment : Fragment() {
         signInTextView.setOnClickListener {
             toSignIn()
         }
-
-        fullNameEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                validateFields()
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                validateFields()
-            }
-        })
-        emailEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                validateFields()
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                validateFields()
-            }
-        })
-        passwordEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                validateFields()
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                validateFields()
-            }
-        })
 
         (activity as? MainActivity)?.findViewById<ImageView>(R.id.backArrowImageView)
             ?.visibility = View.INVISIBLE
@@ -125,28 +87,28 @@ class RegisterFragment : Fragment() {
         val emailText = emailEditText.text.trim().toString()
         val passwordText = passwordEditText.text.trim().toString()
 
-        if (fullNameText.isBlank() || fullNameText.length < 3 && fullNameEditText.isFocused) {
+        if (fullNameText.isBlank()) {
             fieldsValid = false
             fullNameEditText.error = "Name field should be atleast 3 characters long!"
         } else {
             fullNameEditText.error = null
         }
 
-        if (emailText.isBlank() && emailEditText.isFocused) {
+        if (emailText.isBlank()) {
             fieldsValid = false
             emailEditText.error = "Email field cannot be empty!"
         } else {
             emailEditText.error = null
         }
 
-        if (passwordText.isBlank() || passwordText.length < 6 && passwordEditText.isFocused) {
+        if (passwordText.isBlank() || passwordText.length < 6) {
             fieldsValid = false
             passwordEditText.error = "Password must be atleast 6 characters long!"
         } else {
             passwordEditText.error = null
         }
 
-        if (!termsCheckBox.isChecked && termsCheckBox.isFocused) {
+        if (!termsCheckBox.isChecked) {
             fieldsValid = false
             termsCheckBox.error = "You must accept the terms and conditions!"
         } else {

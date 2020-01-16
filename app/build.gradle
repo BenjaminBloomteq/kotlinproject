@@ -46,7 +46,8 @@ dependencies {
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.material:material:1.0.0'
-    testImplementation 'org.mockito:mockito-core:2.23.0'
+    testImplementation "io.mockk:mockk:1.9.3"
+    androidTestImplementation "io.mockk:mockk-android:1.9.3"
 
 
 // 2: Lifecycle Components

@@ -52,7 +52,7 @@ class SignInFragment : Fragment() {
     ): View? {
         AndroidSupportInjection.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
-        viewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
+        // viewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
