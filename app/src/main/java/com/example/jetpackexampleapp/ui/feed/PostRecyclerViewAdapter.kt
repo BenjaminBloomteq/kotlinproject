@@ -1,72 +1,66 @@
 package com.example.jetpackexampleapp.ui.feed
 
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jetpackexampleapp.R
 import com.example.jetpackexampleapp.data.model.Post
+import kotlinx.android.synthetic.main.fragment_post.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class PostRecyclerViewAdapter constructor(
-    private val livedata: LiveData<List<Post>>
+    context: Context,
+    val onClick: (Post, Boolean) -> Unit
 ) :
-    RecyclerView.Adapter<PostRecyclerViewAdapter.ViewHolder>() {
+    RecyclerView.Adapter<PostRecyclerViewAdapter.PostViewHolder>() {
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //get view reference
-        var content: TextView = view.findViewById(R.id.postContentTextView) as TextView
-        var date: TextView = view.findViewById(R.id.timePostedTextView) as TextView
-        var likes: TextView = view.findViewById(R.id.numberOfLikes) as TextView
-        var liked: ImageView = view.findViewById(R.id.notLikedImageView) as ImageView
+    private var posts = emptyList<Post>()
+    private val inflater = LayoutInflater.from(context)
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+        val postView = inflater.inflate(R.layout.fragment_post, parent, false)
+        return PostViewHolder(postView)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // create view holder to hold reference
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.fragment_post,
-                parent,
-                false
-            )
-        )
-    }
+    override fun getItemCount() = posts.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         //set values
-        val dateFormatter = SimpleDateFormat("dd/MM HH:mm")
-        val data = livedata.value!! // idk
-        holder.content.text = data[position].content
-        val date = Date(data[position].date)
-        val time: String? = dateFormatter.format(date)
-        holder.date.text = time
-        holder.likes.text = String.format("%d", 100)
-        holder.liked.setImageResource(R.mipmap.unliked)
-        holder.liked.tag = "unliked"
-
-        holder.liked.setOnClickListener {
-            if (holder.liked.tag == "liked") {
-                val likes = Integer.parseInt(holder.likes.text.toString()) - 1
-                holder.liked.setImageResource(R.mipmap.unliked)
-                holder.liked.tag = "unliked"
-                holder.likes.text = likes.toString()
+        holder.bindPost(posts[position])
+        holder.itemView.notLikedImageView.setOnClickListener {
+            if (holder.itemView.notLikedImageView.tag == "liked") {
+                holder.itemView.notLikedImageView.tag = "unliked"
+                holder.itemView.notLikedImageView.setImageResource(R.mipmap.unliked)
+                onClick(posts[position], false)
             } else {
-                val likes = Integer.parseInt(holder.likes.text.toString()) + 1
-                holder.liked.setImageResource(R.mipmap.liked)
-                holder.liked.tag = "liked"
-                holder.likes.text = likes.toString()
+                holder.itemView.notLikedImageView.tag = "liked"
+                holder.itemView.notLikedImageView.setImageResource(R.mipmap.liked)
+                onClick(posts[position], true)
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        return livedata.value!!.size
+    fun setPosts(posts: List<Post>) {
+        this.posts = posts
+        notifyDataSetChanged()
+    }
+
+    inner class PostViewHolder(postView: View) : RecyclerView.ViewHolder(postView) {
+        fun bindPost(post: Post) {
+            with(post) {
+                itemView.postContentTextView.text = content
+                val dateFormatter = SimpleDateFormat("dd/MM HH:mm")
+                val fullDate = Date(date)
+                val time: String? = dateFormatter.format(fullDate)
+                itemView.timePostedTextView.text = time
+                itemView.userAvatar.setImageResource(R.drawable.avatar)
+                itemView.numberOfLikes.text = post.likes.toString()
+            }
+        }
     }
 }

@@ -1,8 +1,6 @@
 package com.example.jetpackexampleapp.ui.feed
 
-import android.os.Handler
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.jetpackexampleapp.data.db.PostDao
 import com.example.jetpackexampleapp.data.model.Post
@@ -11,26 +9,24 @@ import javax.inject.Inject
 
 class FeedViewModel @Inject constructor(postDao: PostDao) : ViewModel() {
 
-    private var postRepository = PostRepository(postDao)
+    private val postRepository: PostRepository
+    val posts : LiveData<List<Post>>
+
+
+    init {
+        postRepository = PostRepository(postDao)
+        posts = postRepository.posts
+    }
 
     fun post(post: Post) {
         postRepository.insertPost(post)
-        loadPosts()
     }
 
-
-    private lateinit var allPosts: MutableLiveData<List<Post>>
-
-    fun getAllPosts(): LiveData<List<Post>> {
-        allPosts = MutableLiveData()
-        loadPosts()
-        return allPosts
+    fun toggleLiked(post: Post, liked: Boolean) {
+        post.likes = if (liked) ++post.likes else --post.likes
+        postRepository.updatePost(post)
     }
 
-    private fun loadPosts() {
-            val postsList: List<Post> = postRepository.getAllPosts()
-            allPosts.value = postsList
-    }
 
 
 }

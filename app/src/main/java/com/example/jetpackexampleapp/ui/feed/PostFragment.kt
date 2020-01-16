@@ -32,24 +32,9 @@ class PostFragment : Fragment() {
         AndroidSupportInjection.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(PostViewModel::class.java)
         viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
+        notLikedImageView.tag = "unliked"
+        notLikedImageView.setImageResource(R.mipmap.unliked)
         return inflater.inflate(R.layout.fragment_post, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        notLikedImageView.setOnClickListener {
-            if (notLikedImageView.tag == "liked") {
-                val likes = Integer.parseInt(numberOfLikes.text.toString()) - 1
-                notLikedImageView.setImageResource(R.mipmap.unliked)
-                notLikedImageView.tag = "unliked"
-                numberOfLikes.text = likes.toString()
-            } else {
-                val likes = Integer.parseInt(numberOfLikes.text.toString()) + 1
-                notLikedImageView.setImageResource(R.mipmap.liked)
-                notLikedImageView.tag = "liked"
-                numberOfLikes.text = likes.toString()
-            }
-        }
     }
 
 

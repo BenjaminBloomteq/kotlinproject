@@ -1,9 +1,7 @@
 package com.example.jetpackexampleapp.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.example.jetpackexampleapp.data.model.Post
 
 @Dao
@@ -13,5 +11,8 @@ interface PostDao {
     fun insert(post: Post)
 
     @Query("SELECT * FROM Post ORDER BY id DESC")
-    fun getAllPosts() : List<Post>
+    fun getAllPosts() : LiveData<List<Post>>
+
+    @Update
+    fun updatePost(post: Post)
 }

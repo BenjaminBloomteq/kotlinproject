@@ -1,5 +1,6 @@
 package com.example.jetpackexampleapp.ui.feed
 
+import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -47,15 +48,14 @@ class FeedActivity : AppCompatActivity(), HasSupportFragmentInjector {
         }
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(FeedViewModel::class.java)
-        viewModel = ViewModelProviders.of(this).get(FeedViewModel::class.java)
-
         postsRecyclerView.layoutManager = LinearLayoutManager(this)
-        val allPosts: LiveData<List<Post>> = viewModel.getAllPosts()
-        val adapter = PostRecyclerViewAdapter(allPosts)
+        val adapter = PostRecyclerViewAdapter(this) { post, like ->
+            viewModel.toggleLiked(post, like)
+        }
         postsRecyclerView.adapter = adapter
-        allPosts.observe(this, androidx.lifecycle.Observer {
-            if (it.isNotEmpty()) {
-                adapter.notifyDataSetChanged()
+        viewModel.posts.observe(this, androidx.lifecycle.Observer {posts ->
+            posts?.let {
+                adapter.setPosts(posts)
             }
         })
     }
