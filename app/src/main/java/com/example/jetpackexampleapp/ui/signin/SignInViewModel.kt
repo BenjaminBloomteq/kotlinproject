@@ -1,7 +1,6 @@
 package com.example.jetpackexampleapp.ui.signin
 
 import android.app.Application
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.jetpackexampleapp.data.model.People

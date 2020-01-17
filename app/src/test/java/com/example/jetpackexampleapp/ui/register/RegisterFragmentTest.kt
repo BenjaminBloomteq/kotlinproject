@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.jetpackexampleapp.data.model.People
 import com.example.jetpackexampleapp.data.repositories.PeopleRepository
 import com.raywenderlich.android.imet.data.db.PeopleDao
-import io.mockk.*
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 

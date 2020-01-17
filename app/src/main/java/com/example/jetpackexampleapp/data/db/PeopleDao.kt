@@ -10,7 +10,6 @@ import com.example.jetpackexampleapp.data.model.People
 @Dao
 interface PeopleDao {
 
-
     // 1: Select All
     @Query("SELECT * FROM People ORDER BY id DESC")
     fun getAll(): LiveData<List<People>>
@@ -39,3 +38,5 @@ interface PeopleDao {
     @Query("SELECT * FROM People WHERE username = :username")
     fun findByUsername(username: String): People
 }
+
+

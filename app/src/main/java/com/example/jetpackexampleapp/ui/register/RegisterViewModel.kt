@@ -1,7 +1,7 @@
 package com.example.jetpackexampleapp.ui.register
 
-import android.app.Application
-import android.widget.Toast
+import android.util.Patterns
+import androidx.core.util.PatternsCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.jetpackexampleapp.data.model.People
@@ -14,12 +14,12 @@ constructor(peopleDao: PeopleDao) : ViewModel() {
 
     private val peopleRepository = PeopleRepository(peopleDao)
 
-    fun registerUser(people: People) {
-            peopleRepository.registerPeople(people)
-        }
-
     fun getAllPeople(): LiveData<List<People>> {
         return  peopleRepository.getAllPeople()
+    }
+
+    private fun validateEmail(email: String) : Boolean {
+        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun userExists(username: String): Boolean {
@@ -31,5 +31,10 @@ constructor(peopleDao: PeopleDao) : ViewModel() {
         return false
     }
 
+    fun registerUser(people: People) {
+        if (validateEmail(people.username)) {
+            peopleRepository.registerPeople(people)
+        }
+    }
 
 }
